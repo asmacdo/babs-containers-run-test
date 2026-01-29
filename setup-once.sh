@@ -6,8 +6,8 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 mkdir -p "${BASE}"
 
-# Create venv via uv
-pip install uv
+# Install uv and create venv
+curl -LsSf https://astral.sh/uv/install.sh | sh
 uv venv "${BASE}/venv"
 source "${BASE}/venv/bin/activate"
 uv pip install datalad datalad-container
