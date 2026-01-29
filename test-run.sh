@@ -10,7 +10,8 @@ source "${BASE}/venv/bin/activate"
 # Install babs from specified branch
 uv pip install "git+${BABS_REPO}@${BABS_BRANCH}"
 
-# Clean previous run
+# Clean previous run (chmod needed for git-annex read-only files)
+chmod -R u+w "${BASE}/babs-generated" 2>/dev/null || true
 rm -rf "${BASE}/babs-generated"
 
 # Run babs init
