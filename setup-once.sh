@@ -16,7 +16,8 @@ uv pip install datalad datalad-container
 cd "${BASE}"
 datalad create -c text2git handmade-containers
 cd handmade-containers
-APPTAINER_TMPDIR="${HOME}/tmp" datalad containers-add bids-mriqc \
+mkdir -p /scratch/${USER}/tmp
+APPTAINER_TMPDIR="/scratch/${USER}/tmp" datalad containers-add bids-mriqc \
     --url docker://nipreps/mriqc:24.0.2
 cd "${BASE}"
 
