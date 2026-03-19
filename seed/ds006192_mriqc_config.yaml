@@ -1,0 +1,35 @@
+input_datasets:
+    BIDS:
+        is_zipped: false
+        origin_url: "/dartfs/rc/lab/D/DBIC/DBIC/CON/asmacdo/tmp-babs-container-run-testing/ds000003-demo"
+        path_in_babs: inputs/data/BIDS
+
+bids_app_args:
+    $SUBJECT_SELECTION_FLAG: "--participant-label"
+    -w: "$BABS_TMPDIR"
+    --n_cpus: "4"
+    --mem_gb: "16"
+    -vv: ""
+    --no-sub: ""
+
+singularity_args:
+    - --containall
+    - --writable-tmpfs
+
+all_results_in_one_zip: true
+zip_foldernames:
+    mriqc: "24-1-0"
+
+cluster_resources:
+    interpreting_shell: "/bin/bash"
+    hard_runtime_limit: "4:00:00"
+    customized_text: |
+        #SBATCH --cpus-per-task=4
+        #SBATCH --mem=16G
+        #SBATCH --nodes=1
+        #SBATCH --ntasks=1
+
+script_preamble: |
+    source /dartfs/rc/lab/D/DBIC/DBIC/CON/asmacdo/tmp-babs-container-run-testing/venv/bin/activate
+
+job_compute_space: "/scratch"
